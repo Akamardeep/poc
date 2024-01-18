@@ -1,0 +1,28 @@
+name: Run unit tests
+ 
+on:
+  push:
+    branches: [ development , dev ]
+  pull_request:
+    branches: [ development , dev ]
+ 
+jobs:  
+  test:
+    runs-on: ubuntu-latest
+ 
+    steps:
+    - name : Checkout code
+      env:
+          SSH_AUTH_SOCK: /tmp/ssh_agent.sock
+      run: |
+        echo ${GITHUB_WORKSPACE}
+ 
+    - name : Install Packages
+      run : pip install coverage
+ 
+    - name: unit test
+      run: |
+        ls -al
+        chmod +x ${{ github.workspace }}/test.py
+        python ${{ github.workspace }}/test.py
+        coverage report -m --fail-under=80
