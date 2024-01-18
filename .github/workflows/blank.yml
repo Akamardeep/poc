@@ -24,7 +24,11 @@ jobs:
         sudo sh -c 'echo "${{ secrets.PVT_KEY}}" > ~/.ssh/id_rsa'
         sudo sh -c 'chmod -f 0600 ~/.ssh/id_rsa ~/.ssh/id_rsa.pub'
         sudo sh -c 'ssh-keyscan github.com >> ~/.ssh/known_hosts'
-        git checkout test
+        sudo sh -c 'eval "$(ssh-agent)" '
+        sudo sh -c 'ssh-agent -a /tmp/ssh_agent.sock > /dev/null'
+        echo "added agent"
+        sudo sh -c 'ssh-add ~/.ssh/id_rsa'
+        git clone git@github.com:Akamardeep/poc.git
  
     - name : Install Packages
       run : pip install coverage
