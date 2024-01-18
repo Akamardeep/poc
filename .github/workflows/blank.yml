@@ -46,8 +46,9 @@ jobs:
         ls -al
         echo ${{ github.workspace }}
         cd ${{ github.workspace }}
+        cd poc
         ls -al
-        chmod +x ${{ github.workspace }}/test.py
-        python ${{ github.workspace }}/test.py
+        chmod +x ./test.py
+        python ./test.py
         coverage report -m --fail-under=80
  
