@@ -46,6 +46,8 @@ jobs:
  
     - name: unit test
       run: |
+        git clone git@github.com:Akamardeep/poc.git
+        cd poc
         git checkout development
         git pull
         ls -al
