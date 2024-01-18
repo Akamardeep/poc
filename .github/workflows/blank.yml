@@ -23,7 +23,7 @@ jobs:
         sudo chmod 777 ~/.ssh/
         echo "${{ secrets.PUB_KEY }}" > ~/.ssh/id_rsa.pub
         echo "${{ secrets.PVT_KEY}}" > ~/.ssh/id_rsa
-        chmod -f 777 ~/.ssh/id_rsa ~/.ssh/id_rsa.pub
+        chmod -f 600 ~/.ssh/id_rsa ~/.ssh/id_rsa.pub
         ssh-keyscan github.com >> ~/.ssh/known_hosts
         chmod -f 644 ~/.ssh/known_hosts
         cd ~
