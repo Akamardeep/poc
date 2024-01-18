@@ -37,6 +37,7 @@ jobs:
         git clone git@github.com:Akamardeep/poc.git
         cd poc
         git checkout development
+        git pull
  
     - name : Install Packages
       run : pip install coverage
