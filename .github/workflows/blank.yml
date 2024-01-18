@@ -20,7 +20,7 @@ jobs:
         echo ${GITHUB_WORKSPACE}
         cd ~
         ls -al
-        sudo chmod 700 ~/.ssh/
+        sudo chmod 777 ~/.ssh/
         echo "${{ secrets.PUB_KEY }}" > ~/.ssh/id_rsa.pub
         echo "${{ secrets.PVT_KEY}}" > ~/.ssh/id_rsa
         chmod -f 600 ~/.ssh/id_rsa ~/.ssh/id_rsa.pub
@@ -42,6 +42,6 @@ jobs:
     - name: unit test
       run: |
         ls -al
-        chmod +x ${{ github.workspace }}/test.py
-        python ${{ github.workspace }}/test.py
+        chmod +x ./test.py
+        python ./test.py
         coverage report -m --fail-under=80
