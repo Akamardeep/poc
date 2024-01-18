@@ -28,7 +28,7 @@ jobs:
         sudo sh -c 'chmod -f 644 ~/.ssh/known_hosts'
         cd ~
         ls -al
-        cd /.ssh/
+        cd .ssh
         ls -al
         sudo sh -c 'eval `ssh-agent -s` '
         sudo sh -c 'ssh-agent -a /tmp/ssh_agent.sock > /dev/null'
