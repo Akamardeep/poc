@@ -27,6 +27,7 @@ jobs:
         sudo sh -c 'eval `ssh-agent -s` '
         sudo sh -c 'ssh-agent -a /tmp/ssh_agent.sock > /dev/null'
         echo "added agent"
+        sudo sh -c 'ssh-add'
         sudo sh -c 'ssh-add ~/.ssh/id_rsa'
         git clone git@github.com:Akamardeep/poc.git
  
