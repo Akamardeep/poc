@@ -49,7 +49,6 @@ jobs:
         ls -al
         echo ${{ github.workspace }}
         cd ${{ github.workspace }}
-        cd poc
         ls -al
         chmod +x ./test.py
         python ./test.py
