@@ -35,9 +35,9 @@ jobs:
         echo "added agent"
         ssh-add ~/.ssh/id_rsa
         git clone git@github.com:Akamardeep/poc.git
+        cd poc
         git checkout development
         git pull
-        cd poc
  
     - name : Install Packages
       run : pip install coverage
