@@ -46,9 +46,10 @@ jobs:
  
     - name: unit test
       run: |
+        git checkout development
+        git pull
         ls -al
         echo ${{ github.workspace }}
-        cd ${{ github.workspace }}
         ls -al
         chmod +x ./test.py
         python ./test.py
