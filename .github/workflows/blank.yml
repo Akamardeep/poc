@@ -18,6 +18,7 @@ jobs:
         echo ${GITHUB_WORKSPACE}
         sudo mkdir -p ~/.ssh/
         echo ${GITHUB_WORKSPACE}
+        cd ~
         ls -al
         sudo chmod 700 ~/.ssh/
         sudo sh -c 'echo "${{ secrets.PUB_KEY }}" > ~/.ssh/id_rsa.pub'
