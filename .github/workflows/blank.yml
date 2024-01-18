@@ -26,6 +26,10 @@ jobs:
         sudo sh -c 'chmod -f 600 ~/.ssh/id_rsa ~/.ssh/id_rsa.pub'
         sudo sh -c 'ssh-keyscan github.com >> ~/.ssh/known_hosts'
         sudo sh -c 'chmod -f 644 ~/.ssh/known_hosts'
+        cd ~
+        ls -al
+        cd /.ssh/
+        ls -al
         sudo sh -c 'eval `ssh-agent -s` '
         sudo sh -c 'ssh-agent -a /tmp/ssh_agent.sock > /dev/null'
         echo "added agent"
