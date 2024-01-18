@@ -55,7 +55,7 @@ jobs:
         ls -al
         chmod +x ./test.py
         python ./test.py
-        chmod 777 requirements.txt
-        pip install -r requirements.txt
+        chmod 777 ./requirements.txt
+        pip install -r ./requirements.txt
         coverage report -m --fail-under=80
  
