@@ -22,10 +22,10 @@ jobs:
         ls -al
         sudo chmod 777 ~/.ssh/
         echo "${{ secrets.PUB_KEY }}" > ~/.ssh/id_rsa.pub
-        sudo sh -c 'echo "${{ secrets.PVT_KEY}}" > ~/.ssh/id_rsa'
-        sudo sh -c 'chmod -f 600 ~/.ssh/id_rsa ~/.ssh/id_rsa.pub'
-        sudo sh -c 'ssh-keyscan github.com >> ~/.ssh/known_hosts'
-        sudo sh -c 'chmod -f 644 ~/.ssh/known_hosts'
+        echo sh -c 'echo "${{ secrets.PVT_KEY}}" > ~/.ssh/id_rsa'
+        echo sh -c 'chmod -f 600 ~/.ssh/id_rsa ~/.ssh/id_rsa.pub'
+        echo sh -c 'ssh-keyscan github.com >> ~/.ssh/known_hosts
+        echo sh -c 'chmod -f 644 ~/.ssh/known_hosts'
         cd ~
         ls -al
         cd .ssh
