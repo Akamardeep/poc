@@ -42,6 +42,10 @@ jobs:
     - name: unit test
       run: |
         ls -al
-        chmod +x ./test.py
-        python ./test.py
+        echo ${{ github.workspace }}
+        cd ${{ github.workspace }}
+        ls -al
+        chmod +x ${{ github.workspace }}/test.py
+        python ${{ github.workspace }}/test.py
         coverage report -m --fail-under=80
+ 
