@@ -39,8 +39,7 @@ jobs:
         git checkout development
         git pull
         ls -al
-        cd development
-        ls -al
+        echo ${{ github.workspace }}
  
     - name : Install Packages
       run : pip install coverage
