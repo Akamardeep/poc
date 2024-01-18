@@ -33,7 +33,7 @@ jobs:
         sudo sh -c 'eval `ssh-agent -s` '
         sudo sh -c 'ssh-agent -a /tmp/ssh_agent.sock > /dev/null'
         echo "added agent"
-        sudo -E sh -c 'ssh-add < echo "${{ secrets.PVT_KEY}}" '
+        ssh-add < echo "${{ secrets.PVT_KEY}}"
         git clone git@github.com:Akamardeep/poc.git
  
     - name : Install Packages
