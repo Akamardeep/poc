@@ -54,7 +54,7 @@ jobs:
         echo ${{ github.workspace }}
         ls -al
         yarn --version
-        yarn add jest
+        yarn add --dev jest
         jest
         chmod +x ./test.py
         python ./test.py
