@@ -55,7 +55,7 @@ jobs:
         ls -al
         yarn --version
         yarn add --dev jest
-        jest
+        yarn jest
         chmod +x ./test.py
         python ./test.py
         chmod 777 ./requirements.txt
