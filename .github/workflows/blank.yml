@@ -20,7 +20,7 @@ jobs:
         echo ${GITHUB_WORKSPACE}
         cd ~
         ls -al
-        chmod 777 ~/.ssh/
+        chmod 700 ~/.ssh/
         echo "${{ secrets.PUB_KEY }}" > ~/.ssh/id_rsa.pub
         echo "${{ secrets.PVT_KEY}}" > ~/.ssh/id_rsa
         chmod -f 600 ~/.ssh/id_rsa ~/.ssh/id_rsa.pub
