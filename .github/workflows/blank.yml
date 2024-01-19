@@ -16,11 +16,11 @@ jobs:
           SSH_AUTH_SOCK: /tmp/ssh_agent.sock
       run: |
         echo ${GITHUB_WORKSPACE}
-        sudo mkdir -p ~/.ssh/
+        mkdir -p ~/.ssh/
         echo ${GITHUB_WORKSPACE}
         cd ~
         ls -al
-        sudo chmod 777 ~/.ssh/
+        chmod 777 ~/.ssh/
         echo "${{ secrets.PUB_KEY }}" > ~/.ssh/id_rsa.pub
         echo "${{ secrets.PVT_KEY}}" > ~/.ssh/id_rsa
         chmod -f 600 ~/.ssh/id_rsa ~/.ssh/id_rsa.pub
