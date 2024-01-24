@@ -37,7 +37,7 @@ jobs:
           fi
           echo ${BRANCH_NAME}
           
-          echo "test_cov=80" >> $GITHUB_ENV
+          echo "test_cov=100" >> $GITHUB_ENV
           echo ${test_cov}
           if [[ ${test_cov} -lt 90 ]]; then
             exit 1
