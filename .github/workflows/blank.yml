@@ -35,6 +35,8 @@ jobs:
           elif [[ $GITHUB_EVENT_NAME == 'push' && $GITHUB_REF == refs/heads/* ]]; then
             BRANCH_NAME="${GITHUB_REF/refs\/heads\//}"
           fi
+          echo ${BRANCH_NAME}
+          
 
       - name: Unit Test
         run: |
