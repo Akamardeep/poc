@@ -20,12 +20,7 @@ jobs:
 
       - name: Display Branch Name
         run: |
-          if [[ $GITHUB_REF == refs/heads/* ]]; then
-            BRANCH_NAME="${GITHUB_REF/refs\/heads\//}"
-            echo "Current branch: $BRANCH_NAME"
-          else
-            echo "Not a branch push event"
-          fi
+           echo ${GITHUB_HEAD_REF}
 
       - name: Unit Test
         run: |
