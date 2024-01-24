@@ -37,6 +37,12 @@ jobs:
           fi
           echo ${BRANCH_NAME}
           
+      - name: Set variable
+        run: echo "a=fail" >> $GITHUB_ENV
+
+      - name: Check condition and fail if necessary
+        if: ${{ env.a == 'fail' }}
+        run: exit 1
 
       - name: Unit Test
         run: |
