@@ -36,11 +36,12 @@ jobs:
             BRANCH_NAME="${GITHUB_REF/refs\/heads\//}"
           fi
           echo ${BRANCH_NAME}
-          env.test_cov = 80
-          echo ${test_cov}
-          if: ${test_cov} < 90
-          run: exit 1
           
+          echo "test_cov=80" >> $GITHUB_ENV
+          echo ${test_cov}
+          if [[ ${test_cov} -lt 90 ]]; then
+            exit 1
+          fi
 
       - name: Unit Test
         run: |
