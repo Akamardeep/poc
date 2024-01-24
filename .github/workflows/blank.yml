@@ -36,7 +36,7 @@ jobs:
             BRANCH_NAME="${GITHUB_REF/refs\/heads\//}"
           fi
           echo ${BRANCH_NAME}
-          coverage=$(cat ./coverage/lcov-report/index.html | grep -A 1 "class='fl pad1y space-right2'" | awk 'NR==2' | sed 's/^[^>]*>//;s/<.*$//')
+          coverage=$(cat ../coverage/lcov-report/index.html | grep -A 1 "class='fl pad1y space-right2'" | awk 'NR==2' | sed 's/^[^>]*>//;s/<.*$//')
            echo "coverage=${coverage}" >> $GITHUB_ENV
           echo ${coverage}
           
