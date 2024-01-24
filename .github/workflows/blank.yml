@@ -34,9 +34,11 @@ jobs:
             BRANCH_NAME="${GITHUB_HEAD_REF}"
           elif [[ $GITHUB_EVENT_NAME == 'push' && $GITHUB_REF == refs/heads/* ]]; then
             BRANCH_NAME="${GITHUB_REF/refs\/heads\//}"
+          fi
 
       - name: Unit Test
         run: |
           ls -al
           chmod +x ${{ github.workspace }}/test.py
-         
+          python ${{ github.workspace }}/test.py
+          coverage report -m --fail-under=80
