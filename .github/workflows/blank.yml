@@ -2,9 +2,18 @@ name: Run unit tests
 
 on:
   push:
-    branches: [development, dev, check_branch]
+    branches:
+      - development
+      - dev
+      - check_branch
+      - check_1
+      
   pull_request:
-    branches: [development, dev, check_branch]
+    branches:
+      - development
+      - dev
+      - check_branch
+      - check_1
 
 jobs:
   test:
@@ -20,7 +29,14 @@ jobs:
 
       - name: Display Branch Name
         run: |
-           echo ${GITHUB_HEAD_REF}
+          echo ${GITHUB_EVENT_NAME}
+          if [[ $GITHUB_EVENT_NAME == 'pull_request' ]]; then
+            BRANCH_NAME="${GITHUB_HEAD_REF}"
+          elif [[ $GITHUB_EVENT_NAME == 'push' && $GITHUB_REF == refs/heads/* ]]; then
+            BRANCH_NAME="${GITHUB_REF/refs\/heads\//}"
+          fi
+          echo ${BRANCH_NAME}
+          
 
       - name: Unit Test
         run: |
