@@ -18,13 +18,13 @@ jobs:
         run: |
           pip install coverage
 
+      - name: Display Branch Name
+        run: |
+          echo "Current branch: $GITHUB_HEAD_REF"
+
       - name: Unit Test
         run: |
           ls -al
           chmod +x ${{ github.workspace }}/test.py
           python ${{ github.workspace }}/test.py
           coverage report -m --fail-under=80
-
-      - name: Display Branch Name
-        run: |
-          echo "Current branch: ${{ github.ref }}"
