@@ -26,3 +26,5 @@ jobs:
         chmod +x ${{ github.workspace }}/test.py
         python ${{ github.workspace }}/test.py
         coverage report -m --fail-under=80
+     - name : Branch Name
+      echo ${GITHUB_WORKSPACE}   
