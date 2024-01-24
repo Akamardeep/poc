@@ -2,9 +2,15 @@ name: Run unit tests
 
 on:
   push:
-    branches: [development, dev, check_branch]
+    branches:
+      - development
+      - dev
+      - check_branch
   pull_request:
-    branches: [development, dev, check_branch] 
+    branches:
+      - development
+      - dev
+      - check_branch
 
 jobs:
   test:
@@ -20,7 +26,16 @@ jobs:
 
       - name: Display Branch Name
         run: |
-           echo ${GITHUB_HEAD_REF}
+          if [[ $GITHUB_EVENT_NAME == 'pull_request' ]]; then
+            BRANCH_NAME="${GITHUB_HEAD_REF}"
+          elif [[ $GITHUB_EVENT_NAME == 'push' && $GITHUB_REF == refs/heads/* ]]; then
+            BRANCH_NAME="${GITHUB_REF/refs\/heads\//}"
+          else
+            echo "Unsupported event"
+            exit 1
+          fi
+
+          echo "Current branch: $BRANCH_NAME"
 
       - name: Unit Test
         run: |
