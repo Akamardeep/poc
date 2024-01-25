@@ -41,8 +41,12 @@ jobs:
           echo ${BRANCH_NAME}
           ls -la
 
+          # Debugging information
+          echo "Current working directory before cd:"
+          pwd
+
           # Navigate to the coverage directory
-          cd ./coverage || exit 1
+          cd ./coverage || { echo "Error: Failed to change directory."; exit 1; }
 
           # Check if lcov-report directory exists
           if [ -d ./lcov-report ]; then
@@ -54,7 +58,7 @@ jobs:
           fi
 
           # Navigate back to the original directory
-          cd - || exit 1
+          cd - || { echo "Error: Failed to change back to the original directory."; exit 1; }
 
           # Continue with the rest of the script
           coverage=$(cat ./coverage/lcov-report/index.html | grep -A 1 "class='fl pad1y space-right2'" | awk 'NR==2' | sed 's/^[^>]*>//;s/<.*$//')
