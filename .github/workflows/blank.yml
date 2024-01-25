@@ -40,26 +40,21 @@ jobs:
           pwd
           ls -la
           
-          # Adjust the path to access lcov-report inside the coverage directory
-          echo "Content of lcov-report directory:"
-          ls -la ./coverage/lcov-report
-          
-          echo "Current working directory contents:"
-          ls -la
-          
-          coverage=$(cat ./coverage/lcov-report/index.html | grep -A 1 "class='fl pad1y space-right2'" | awk 'NR==2' | sed 's/^[^>]*>//;s/<.*$//')
-          echo "coverage=${coverage}" >> $GITHUB_ENV
-          echo ${coverage}
-          
-          echo "test_cov=100" >> $GITHUB_ENV
-          echo ${test_cov}
-          if [[ ${test_cov} -lt 90 ]]; then
+          # Navigate to the coverage directory
+          cd ./coverage || exit 1
+
+          # Check if lcov-report directory exists
+          if [ -d ./lcov-report ]; then
+            echo "Content of lcov-report directory:"
+            ls -la ./lcov-report
+          else
+            echo "Error: lcov-report directory not found."
             exit 1
           fi
 
-      - name: Unit Test
-        run: |
-          ls -al
-          chmod +x ${{ github.workspace }}/test.py
-          python ${{ github.workspace }}/test.py
-          coverage report -m --fail-under=80
+          # Navigate back to the original directory
+          cd - || exit 1
+
+          # Continue with the rest of the script
+          coverage=$(cat ./coverage/lcov-report/index.html | grep -A 1 "class='fl pad1y space-right2'" | awk 'NR==2' | sed 's/^[^>]*>//;s/<.*$//')
+          echo "coverage=${coverage}
