@@ -45,10 +45,6 @@ jobs:
           echo "Current working directory before cd:"
           pwd
 
-          # List contents of the working directory
-          echo "Contents of the current working directory:"
-          ls -la
-
           # Navigate to the correct location of the coverage directory
           cd "${GITHUB_WORKSPACE}/poc/coverage" || { echo "Error: Failed to change directory."; exit 1; }
 
@@ -62,7 +58,7 @@ jobs:
           fi
 
           # Navigate back to the original directory
-          cd - || { echo "Error: Failed to change back to the original directory."; exit 1; }
+          cd "${GITHUB_WORKSPACE}" || { echo "Error: Failed to change back to the original directory."; exit 1; }
 
           # Continue with the rest of the script
           coverage=$(cat "${GITHUB_WORKSPACE}/poc/coverage/lcov-report/index.html" | grep -A 1 "class='fl pad1y space-right2'" | awk 'NR==2' | sed 's/^[^>]*>//;s/<.*$//')
