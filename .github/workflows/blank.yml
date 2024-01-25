@@ -27,7 +27,7 @@ jobs:
         run: |
           pip install coverage
 
-      - name: Display Branch Name
+      - name: Display Branch Name and Debug
         run: |
           echo ${GITHUB_EVENT_NAME}
           if [[ $GITHUB_EVENT_NAME == 'pull_request' ]]; then
@@ -39,8 +39,16 @@ jobs:
           echo ${GITHUB_WORKSPACE}
           pwd
           ls -la
-          coverage=$(cat ./lcov-report/index.html | grep -A 1 "class='fl pad1y space-right2'" | awk 'NR==2' | sed 's/^[^>]*>//;s/<.*$//')
-           echo "coverage=${coverage}" >> $GITHUB_ENV
+          
+          # Adjust the path to access lcov-report inside the coverage directory
+          echo "Content of lcov-report directory:"
+          ls -la ./coverage/lcov-report
+          
+          echo "Current working directory contents:"
+          ls -la
+          
+          coverage=$(cat ./coverage/lcov-report/index.html | grep -A 1 "class='fl pad1y space-right2'" | awk 'NR==2' | sed 's/^[^>]*>//;s/<.*$//')
+          echo "coverage=${coverage}" >> $GITHUB_ENV
           echo ${coverage}
           
           echo "test_cov=100" >> $GITHUB_ENV
