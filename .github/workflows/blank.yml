@@ -27,7 +27,7 @@ jobs:
         run: |
           pip install coverage
 
-      - name: Display Branch Name and Debug
+      - name: Display Branch Name
         run: |
           echo ${GITHUB_EVENT_NAME}
           if [[ $GITHUB_EVENT_NAME == 'pull_request' ]]; then
@@ -40,29 +40,8 @@ jobs:
           pwd
           echo ${BRANCH_NAME}
           ls -la
-
-          # Debugging information
-          echo "Current working directory before cd:"
-          pwd
-
-          # Navigate to the correct location of the coverage directory
-          cd "${GITHUB_WORKSPACE}/poc" || { echo "Error: Failed to change directory."; exit 1; }
-
-          # Check if coverage directory exists
-          if [ -d ./coverage ]; then
-            echo "Content of coverage directory:"
-            ls -la ./coverage
-          else
-            echo "Error: coverage directory not found."
-            exit 1
-          fi
-
-          # Navigate back to the original directory
-          cd "${GITHUB_WORKSPACE}" || { echo "Error: Failed to change back to the original directory."; exit 1; }
-
-          # Continue with the rest of the script
-          coverage=$(cat "${GITHUB_WORKSPACE}/poc/coverage/lcov-report/index.html" | grep -A 1 "class='fl pad1y space-right2'" | awk 'NR==2' | sed 's/^[^>]*>//;s/<.*$//')
-          echo "coverage=${coverage}" >> $GITHUB_ENV
+          coverage=$(cat ./coverage/lcov-report/index.html | grep -A 1 "class='fl pad1y space-right2'" | awk 'NR==2' | sed 's/^[^>]*>//;s/<.*$//')
+           echo "coverage=${coverage}" >> $GITHUB_ENV
           echo ${coverage}
           
           echo "test_cov=100" >> $GITHUB_ENV
