@@ -27,7 +27,7 @@ jobs:
         run: |
           pip install coverage
 
-      - name: Display Branch Name
+      - name: Display Branch Name and Debug
         run: |
           echo ${GITHUB_EVENT_NAME}
           if [[ $GITHUB_EVENT_NAME == 'pull_request' ]]; then
@@ -40,8 +40,25 @@ jobs:
           pwd
           echo ${BRANCH_NAME}
           ls -la
-          coverage=$(cat ../coverage/lcov-report/index.html | grep -A 1 "class='fl pad1y space-right2'" | awk 'NR==2' | sed 's/^[^>]*>//;s/<.*$//')
-           echo "coverage=${coverage}" >> $GITHUB_ENV
+
+          # Navigate to the coverage directory
+          cd ./coverage || exit 1
+
+          # Check if lcov-report directory exists
+          if [ -d ./lcov-report ]; then
+            echo "Content of lcov-report directory:"
+            ls -la ./lcov-report
+          else
+            echo "Error: lcov-report directory not found."
+            exit 1
+          fi
+
+          # Navigate back to the original directory
+          cd - || exit 1
+
+          # Continue with the rest of the script
+          coverage=$(cat ./coverage/lcov-report/index.html | grep -A 1 "class='fl pad1y space-right2'" | awk 'NR==2' | sed 's/^[^>]*>//;s/<.*$//')
+          echo "coverage=${coverage}" >> $GITHUB_ENV
           echo ${coverage}
           
           echo "test_cov=100" >> $GITHUB_ENV
