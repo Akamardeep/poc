@@ -36,7 +36,19 @@ jobs:
             BRANCH_NAME="${GITHUB_REF/refs\/heads\//}"
           fi
           echo ${BRANCH_NAME}
+          echo ${GITHUB_WORKSPACE}
+          pwd
+          echo ${BRANCH_NAME}
+          ls -la
+          coverage=$(cat ./coverage/lcov-report/index.html | grep -A 1 "class='fl pad1y space-right2'" | awk 'NR==2' | sed 's/^[^>]*>//;s/<.*$//')
+           echo "coverage=${coverage}" >> $GITHUB_ENV
+          echo ${coverage}
           
+          echo "test_cov=100" >> $GITHUB_ENV
+          echo ${test_cov}
+          if [[ ${test_cov} -lt 90 ]]; then
+            exit 1
+          fi
 
       - name: Unit Test
         run: |
