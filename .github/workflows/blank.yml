@@ -41,6 +41,13 @@ jobs:
       - name: Unit Test
         run: |
           ls -al
-          chmod +x ${{ github.workspace }}/test.py
-          python ${{ github.workspace }}/test.py
-          coverage report -m --fail-under=80
+          # chmod +x ${{ github.workspace }}/test.py
+          # python ${{ github.workspace }}/test.py
+          # coverage report -m --fail-under=80 
+          
+      - name: scripts
+        run: |
+          ls -al
+          pwd
+          sh test.sh
+        
