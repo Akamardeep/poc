@@ -44,5 +44,5 @@ jobs:
           action: 'start'
           server: '18.206.209.8'
           service-account-id: 'Administrator' 
-          service-account-password: "YR8XAn-j3o8oWPUi@l(FXizR)5&dBWE2"
+          service-account-password: ${{ secrets.IIS_PASS}}
   
