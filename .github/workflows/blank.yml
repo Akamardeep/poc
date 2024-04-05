@@ -2,9 +2,9 @@ name: Deploy Servlet App
 
 on:
   push:
-    branches:
-      - main
-
+    branches: [development, dev, check_branch,java_check-1]
+  pull_request:
+    branches: [development, dev, check_branch]
 jobs:
    deploy:
     runs-on: windows-latest
