@@ -39,9 +39,9 @@ jobs:
           
 
       - name: IIS start
-        uses: im-open/iis-service-action@v1.0.7
-        with:
-         action: 'start'
-         server: '18.206.209.8'
-         service-account-id: 'Administrator' 
-         service-account-password: ${{ secrets.IIS_PASS}}
+         sudo apt update
+         sudo apt install freerdp2-x11 -y
+         sudo xfreerdp /v:18.206.209.8 /u:Administrator /p:${{ secrets.IIS_PASS}}
+         # server: '18.206.209.8'
+         # service-account-id: 'Administrator' 
+         # service-account-password: ${{ secrets.IIS_PASS}}
