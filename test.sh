@@ -2,7 +2,7 @@
 
 IIS_SERVER="18.206.209.8"
 REMOTE_USERNAME="Administrator"
-REMOTE_PASSWORD= "${{ secrets.IIS_PASS}}"
+REMOTE_PASSWORD=$IIS_PASS
 REMOTE_DESTINATION="C:\demo"
 
 # Local path to your application files
