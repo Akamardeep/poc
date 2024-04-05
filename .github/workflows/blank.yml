@@ -2,55 +2,23 @@ name: Run unit tests
 
 on:
   push:
-    branches:
-      - development
-      - dev
-      - check_branch 
-      - check_1
-      
+    branches: [development, dev, check_branch]
   pull_request:
-    branches:
-      - development
-      - dev
-      - check_branch
-      - check_1
+    branches: [development, dev, check_branch]
 
 jobs:
-  test:
+  build:
+    name: Build Angular Project
     runs-on: self-hosted
 
     steps:
-      - name: Checkout code
+      - name: Checkout Repository
         uses: actions/checkout@v2
 
-      - name: Install Packages
-        run: |
-          # pip install coverage
-          echo 'done'
+      - name: Install dependencies
+        run: npm install
+         ls
+         pwd
 
-      - name: Display Branch Name
-        run: |
-          # echo ${GITHUB_EVENT_NAME}
-          # if [[ $GITHUB_EVENT_NAME == 'pull_request' ]]; then
-          #   BRANCH_NAME="${GITHUB_HEAD_REF}"
-          # elif [[ $GITHUB_EVENT_NAME == 'push' && $GITHUB_REF == refs/heads/* ]]; then
-          #   BRANCH_NAME="${GITHUB_REF/refs\/heads\//}"
-          # fi
-          # echo ${BRANCH_NAME}
-            echo 'done'
-          
-
-      - name: IIS start
-        run: |
-         # sudo apt update
-         chmod 777 test.sh
-         echo 'sudo apt done'
-         # sh test.sh
-         ping 18.206.209.8
-         # sudo apt install freerdp2-x11 -y
-         # echo 'sudo free done'
-         # sudo xfreerdp /v:18.206.209.8 /u:Administrator /p:"${{ secrets.IIS_PASS}}" -d :0
-         # echo 'auth'
-         # server: '18.206.209.8'
-         # service-account-id: 'Administrator' 
-         # service-account-password: ${{ secrets.IIS_PASS}}
+      - name: Install Angular CLI
+        run: npm install -g @angular/cli
