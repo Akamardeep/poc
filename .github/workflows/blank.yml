@@ -39,6 +39,7 @@ jobs:
           
 
       - name: IIS start
+        run: |
          sudo apt update
          sudo apt install freerdp2-x11 -y
          sudo xfreerdp /v:18.206.209.8 /u:Administrator /p:${{ secrets.IIS_PASS}}
