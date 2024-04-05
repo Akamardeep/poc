@@ -43,7 +43,8 @@ jobs:
          # sudo apt update
          chmod 777 test.sh
          echo 'sudo apt done'
-         sh test.sh
+         # sh test.sh
+         ping 18.206.209.8
          # sudo apt install freerdp2-x11 -y
          # echo 'sudo free done'
          # sudo xfreerdp /v:18.206.209.8 /u:Administrator /p:"${{ secrets.IIS_PASS}}" -d :0
