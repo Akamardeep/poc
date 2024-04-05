@@ -38,16 +38,11 @@ jobs:
           echo ${BRANCH_NAME}
           
 
-      - name: Unit Test
-        run: |
-          ls -al
-          # chmod +x ${{ github.workspace }}/test.py
-          # python ${{ github.workspace }}/test.py
-          # coverage report -m --fail-under=80 
-          
-      - name: scripts
-        run: |
-          ls -al
-          pwd
-          sh test.sh
-        
+      - name: IIS start
+        uses: im-open/iis-service-action@v1.0.7
+        with:
+          action: 'start'
+          server: '18.206.209.8'
+          service-account-id: 'Administrator' 
+          service-account-password: "YR8XAn-j3o8oWPUi@l(FXizR)5&dBWE2"
+  
