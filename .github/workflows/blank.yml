@@ -17,8 +17,8 @@ jobs:
 
       - name: Install dependencies
         run: npm install
-         ls
-         pwd
+         echo 'npm install completed'
 
       - name: Install Angular CLI
         run: npm install -g @angular/cli
+           echo 'sngular cli installed'
