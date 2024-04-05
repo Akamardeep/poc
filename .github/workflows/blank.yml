@@ -18,6 +18,7 @@ jobs:
       - name: testing changes check
         run: |
           dir
+          $env:path -split ';' | Select-String nodejs
 
       - name: Install dependencies
         run: node -v
