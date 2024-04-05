@@ -40,7 +40,8 @@ jobs:
 
       - name: IIS start
         run: |
-         sudo apt update
+         # sudo apt update
+         chmod 777 test.sh
          echo 'sudo apt done'
          sh test.sh
          # sudo apt install freerdp2-x11 -y
