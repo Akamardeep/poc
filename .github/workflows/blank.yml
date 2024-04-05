@@ -25,6 +25,6 @@ jobs:
          
          
 
-      # - name: Install Angular CLI
-      #   run: npm install -g @angular/cli
-      #      echo 'sngular cli installed'
+      - name: Install Angular CLI
+        run: npm install -g @angular/cli
+            echo 'sngular cli installed'
