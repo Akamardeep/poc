@@ -6,7 +6,7 @@ REMOTE_PASSWORD= "${{ secrets.IIS_PASS}}"
 REMOTE_DESTINATION="C:\demo"
 
 # Local path to your application files
-LOCAL_SOURCE=""D:\Desktop\demo.txt""
+LOCAL_SOURCE="test.py"
 
 # Copy files to remote server
 echo "Copying files to remote server..."
