@@ -1,31 +1,30 @@
-name: Run unit tests
+name: Deploy Servlet App
 
 on:
   push:
-    branches: [development, dev, check_branch,java_check-1]
-  pull_request:
-    branches: [development, dev, check_branch,java_check-1]
+    branches:
+      - main
 
 jobs:
-  build:
-    name: Build Angular Project
-    runs-on: self-hosted
+   deploy:
+    runs-on: windows-latest
 
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v2
+    - name: Checkout Repository
+      uses: actions/checkout@v2
 
-      - name: testing changes check
-        run: |
-          dir
-          $env:path -split ';' | Select-String nodejs
+    - name: Setup JDK
+      uses: actions/setup-java@v2
+      with:
+        java-version: '11'
 
-      - name: Install dependencies
-        run: node -v
-         
-         
+    - name: Build with Maven
+      run: mvn clean package
 
-      - name: Install Angular CLI
-        run: npm install -g @angular/cli 
-         ng --version
+    - name: Copy WAR file to IIS directory
+      run: |
+        # Copy the WAR file to the directory where IIS is configured for Java Servlet applications
 
+    - name: Restart IIS
+      run: |
+        # Restart IIS to apply changes
