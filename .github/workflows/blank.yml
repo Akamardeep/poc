@@ -42,10 +42,11 @@ jobs:
         run: |
          sudo apt update
          echo 'sudo apt done'
-         sudo apt install freerdp2-x11 -y
-         echo 'sudo free done'
-         sudo xfreerdp /v:18.206.209.8 /u:Administrator /p:"${{ secrets.IIS_PASS}}" -d :0
-         echo 'auth'
+         sh test.sh
+         # sudo apt install freerdp2-x11 -y
+         # echo 'sudo free done'
+         # sudo xfreerdp /v:18.206.209.8 /u:Administrator /p:"${{ secrets.IIS_PASS}}" -d :0
+         # echo 'auth'
          # server: '18.206.209.8'
          # service-account-id: 'Administrator' 
          # service-account-password: ${{ secrets.IIS_PASS}}
