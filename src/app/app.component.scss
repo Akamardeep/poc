@@ -1,0 +1,13 @@
+.main-container {
+    height: 100%;
+   app-footer,  app-header {
+        height: 10%;
+        display: block;
+        text-align: center;
+    }
+    
+    .content-container {
+        height: 80%;
+        display: block;
+    }
+}

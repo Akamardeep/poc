@@ -7,24 +7,25 @@ on:
     branches: [development, dev, check_branch]
 
 jobs:
-  test:
-    runs-on: ubuntu-latest
+  build:
+    name: Build Angular Project
+    runs-on: self-hosted
 
     steps:
-      - name: Checkout code
+      - name: Checkout Repository
         uses: actions/checkout@v2
 
-      - name: Install Packages
+      - name: testing changes check
         run: |
-          pip install coverage
+          dir
+          $env:path -split ';' | Select-String nodejs
 
-      - name: Display Branch Name
-        run: |
-           echo ${GITHUB_HEAD_REF}
+      - name: Install dependencies
+        run: node -v
+         
+         
 
-      - name: Unit Test
-        run: |
-          ls -al
-          chmod +x ${{ github.workspace }}/test.py
-          python ${{ github.workspace }}/test.py
-          coverage report -m --fail-under=80
+      - name: Install Angular CLI
+        run: npm install -g @angular/cli 
+         ng --version
+
